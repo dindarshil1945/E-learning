@@ -23,3 +23,9 @@ def create_profile(sender,instance,created,**kwargs):
     if created and instance.role=="instructor":
         InstructorProfile.objects.create(user=instance)
 signals.post_save.connect(create_profile,User)
+
+class Category(models.Model):
+    category_name=models.CharField(max_length=100,unique=True)
+    
+    def __str__(self):
+        return self.category_name
